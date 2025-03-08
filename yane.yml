@@ -1,0 +1,82 @@
+network:
+  name: ARLOTP_projet
+  version: 0.1
+  hosts:
+    - TA
+      mode : netns
+      init : ./scripts/TA
+ 
+    - TB
+      mode : netns
+      init : ./scripts/TB
+ 
+    - SW1
+      mode : docker
+      image : apache_n7:latest
+      files : ./files/SW1/var:/
+ 
+ 
+    - BoxA
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/BoxA/etc:/
+ 
+    - BoxB
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/BoxB/etc:/
+ 
+    - RFAI
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/RFAI/etc:/
+ 
+ 
+    - R1
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/R1/etc:/
+ 
+    - R2
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/R2/etc:/
+ 
+    - RS
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/RS/etc:/
+ 
+    - RSR
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/RSR/etc:/
+ 
+    - SW2
+      mode : docker
+      image : apache_n7:latest
+      files : ./files/SW2/var:/
+ 
+    - DNS
+      mode : docker
+      image : dns_n7:latest
+      files : ./files/DNS/etc:/
+ 
+  links :
+    - TA:eth0!BoxA:eth0
+    - BoxA:eth1!RFAI:eth0
+    - BoxB:eth1!RFAI:eth1
+    - R1:eth1!RS:eth0
+    - R2:eth1!RSR:eth0
+    - RSR:eth1!RS:eth1
+    - RS:eth2!SW2:eth0
+    - RSR:eth2!DNS:eth0
+ 
+  bridges:
+    - Switch0
+      interfaces: BoxB:eth0!TB:eth0!SW1:eth0!
+    - Switch1
+      interfaces: R1:eth0!R2:eth0!RFAI:eth2!
+ 
+  consoles :
+    - all
