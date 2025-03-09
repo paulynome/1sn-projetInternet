@@ -8,3 +8,4 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 ip route add 170.6.253.128/25 via 170.6.253.1
 ip route add 170.6.253.8/29 via 170.6.253.2
 ip route add 170.6.253.16/29 via 170.6.253.18
+ip route add 170.6.253.24/30 via 170.6.253.18
