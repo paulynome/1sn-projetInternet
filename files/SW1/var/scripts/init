@@ -1,3 +1,0 @@
-#!/bin/bash
-ip link set dev eth0 up
-ip a a 192.168.80.195/26 dev eth0
