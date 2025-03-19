@@ -7,4 +7,7 @@ ip link set dev eth2 up
 ip a a 170.6.253.1/29 dev eth2
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
+ip route add 170.6.253.8/29 via 170.6.253.2
+ip route add 170.6.253.16/29 via 170.6.253.3
+ip route add 170.6.253.24/30 via 170.6.253.2
 
