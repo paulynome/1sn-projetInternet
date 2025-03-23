@@ -6,3 +6,5 @@ ip a a 170.6.253.134/30 dev eth1
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ip route add 170.6.253.0/24 via 170.6.253.133
+
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
