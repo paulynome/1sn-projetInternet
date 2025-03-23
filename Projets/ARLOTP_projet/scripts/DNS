@@ -2,4 +2,4 @@
 ip link set dev eth0 up
 ip a a 170.6.253.22/30 dev eth0
 
-ip route add * via 170.6.253.21
+ip route add default via 170.6.253.21
