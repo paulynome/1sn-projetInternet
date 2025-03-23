@@ -6,5 +6,12 @@ ip a a 170.6.253.134/30 dev eth1
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
+# DHCP Donc pas de RIP
+ ip route add default via 170.6.253.133
+ 
+# Lancement du DHCP
+service isc-dhcp-server start
+ 
+# NAT
 iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
