@@ -18,12 +18,12 @@ network:
  
     - BoxA
       mode : docker
-      image : quagga_n7:latest
+      image : dhcp_n7:latest
       files : ./files/BoxA/etc:/
  
     - BoxB
       mode : docker
-      image : quagga_n7:latest
+      image : dhcp_n7:latest
       files : ./files/BoxB/etc:/
  
     - RFAI
