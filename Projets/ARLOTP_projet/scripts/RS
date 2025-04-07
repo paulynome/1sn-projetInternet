@@ -9,10 +9,12 @@ ip a a 170.6.253.13/30 dev eth2
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
 #iptables --policy FORWARD DROP
-iptables -t filter -A FORWARD -o eth2 -j DROP
+
 
 # Ping
 
-iptables -t filter -A FORWARD -o eth2 -p icmp -j ACCEPT
-iptables -t filter -A FORWARD -o eth2 -p udp --dport 80 -j ACCEPT
-#iptables -t filter -A FORWARD -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -d 170.6.253.12/30 -p icmp -j ACCEPT
+iptables -t filter -A FORWARD -d 170.6.253.12/30  -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -d 170.6.253.12/30  -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -d 170.6.253.12/30  -j DROP
+
