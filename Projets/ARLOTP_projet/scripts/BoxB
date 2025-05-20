@@ -15,3 +15,8 @@ service isc-dhcp-server start
 # NAT
 iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
+# Serveur web
+iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to-destination 192.168.80.251:80
+
+# Bloquer le SSH depuis l'extérieur
+iptables -t filter -A FORWARD -i eth1  -p tcp --dport 22 -j DROP

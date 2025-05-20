@@ -14,3 +14,6 @@ service isc-dhcp-server start
 
 iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
+# Bloquer le SSH depuis l'extérieur
+iptables -t filter -A FORWARD -i eth1  -p tcp --dport 22 -j DROP
+

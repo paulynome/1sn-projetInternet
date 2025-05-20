@@ -440,7 +440,7 @@ body:before {
   height: 100vh;
   content: '';
   width: 100vw;
-  background-image: url("../profile.jpg");
+  background-image: url("../images.jpeg");
   background-size: cover;
   background-position: bottom right;
   background-repeat: repeat;
